@@ -1,0 +1,299 @@
+/* 
+  Ayuraa Fashion - Luxury Redesign System
+  Theme: Emerald, Gold & Obsidian
+  Redesign by Antigravity
+*/
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap');
+
+:root {
+    /* Color Palette - High-End Luxury */
+    --ayuraa-emerald: #0A2E2A;      /* Deep Forest Emerald */
+    --ayuraa-emerald-light: #144D47;
+    --ayuraa-gold: #C5A059;         /* Sophisticated Gold */
+    --ayuraa-gold-muted: #A68A4F;
+    --ayuraa-obsidian: #1A1A1A;     /* Soft Black */
+    --ayuraa-white: #FFFFFF;
+    --ayuraa-off-white: #F9F9F9;
+    --ayuraa-text: #2D2D2D;
+    --ayuraa-text-light: #777777;
+    
+    /* Typography */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+    
+    /* Spacing & Borders */
+    --border-radius: 2px; /* Sharp, high-fashion edges */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-body);
+    color: var(--ayuraa-text);
+    background-color: var(--ayuraa-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .title, .heading {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    color: var(--ayuraa-obsidian);
+    letter-spacing: 0.02em;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--ayuraa-off-white);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--ayuraa-gold);
+}
+
+/* Header & Navigation */
+#header {
+    background-color: var(--ayuraa-white) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition-smooth);
+}
+
+.announcement-bar {
+    background: linear-gradient(90deg, var(--ayuraa-emerald), var(--ayuraa-emerald-light)) !important;
+    color: var(--ayuraa-gold) !important;
+    border-bottom: 1px solid var(--ayuraa-gold-muted);
+}
+
+.announcement-bar p {
+    color: var(--ayuraa-gold) !important;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.item-link {
+    font-family: var(--font-body) !important;
+    font-weight: 400 !important;
+    color: var(--ayuraa-obsidian) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.item-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--ayuraa-gold);
+    transition: var(--transition-smooth);
+}
+
+.item-link:hover::after {
+    width: 100%;
+}
+
+.item-link:hover {
+    color: var(--ayuraa-gold) !important;
+}
+
+/* Buttons */
+.tf-btn {
+    border-radius: var(--border-radius) !important;
+    font-family: var(--font-body) !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    padding: 14px 35px !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.btn-fill {
+    background-color: var(--ayuraa-emerald) !important;
+    border-color: var(--ayuraa-emerald) !important;
+    color: var(--ayuraa-white) !important;
+}
+
+.btn-fill:hover {
+    background-color: var(--ayuraa-gold) !important;
+    border-color: var(--ayuraa-gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+}
+
+.btn-outline {
+    background-color: transparent !important;
+    border: 1px solid var(--ayuraa-emerald) !important;
+    color: var(--ayuraa-emerald) !important;
+}
+
+.btn-outline:hover {
+    background-color: var(--ayuraa-emerald) !important;
+    color: var(--ayuraa-white) !important;
+}
+
+/* Product Cards */
+.card-product {
+    border: none !important;
+    background: transparent !important;
+    transition: var(--transition-smooth);
+}
+
+.card-product:hover {
+    transform: translateY(-5px);
+}
+
+.card-product .title {
+    font-family: var(--font-heading) !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    color: var(--ayuraa-obsidian) !important;
+    margin-top: 15px !important;
+    letter-spacing: 0.02em;
+}
+
+.card-product .price {
+    font-family: var(--font-body) !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: var(--ayuraa-gold-muted) !important;
+    letter-spacing: 1px;
+}
+
+/* Collection Items */
+.collection-item .collection-content .tf-btn {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    color: var(--ayuraa-emerald) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.collection-item .collection-content .tf-btn:hover {
+    background-color: var(--ayuraa-emerald) !important;
+    color: var(--ayuraa-white) !important;
+}
+
+/* Section Titles */
+.flat-title .title {
+    font-size: 42px !important;
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.flat-title .title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background-color: var(--ayuraa-gold);
+}
+
+/* Footer Enhancements */
+#footer {
+    background-color: var(--ayuraa-obsidian) !important;
+    color: var(--ayuraa-off-white) !important;
+    padding-top: 80px !important;
+}
+
+#footer h6 {
+    color: var(--ayuraa-gold) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px !important;
+    margin-bottom: 25px;
+}
+
+.footer-menu_item {
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 13px !important;
+    transition: var(--transition-smooth);
+}
+
+.footer-menu_item:hover {
+    color: var(--ayuraa-gold) !important;
+    padding-left: 5px;
+}
+
+.tf-social-icon li a {
+    border-color: rgba(255,255,255,0.1) !important;
+    color: var(--ayuraa-gold) !important;
+}
+
+.tf-social-icon li a:hover {
+    background-color: var(--ayuraa-gold) !important;
+    color: var(--ayuraa-obsidian) !important;
+    border-color: var(--ayuraa-gold) !important;
+}
+
+/* Variant Pickers (Product Detail) */
+.variant-picker-label {
+    color: var(--ayuraa-obsidian) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.5px;
+}
+
+.size-option {
+    border: 1px solid #E5E5E5 !important;
+    border-radius: 0 !important;
+}
+
+.size-option.selected {
+    background-color: var(--ayuraa-emerald) !important;
+    border-color: var(--ayuraa-emerald) !important;
+    color: var(--ayuraa-white) !important;
+}
+
+/* Utility Classes */
+.bg-emerald { background-color: var(--ayuraa-emerald); }
+.text-gold { color: var(--ayuraa-gold); }
+.font-heading { font-family: var(--font-heading) !important; }
+
+/* Women's Boutique Enhancements */
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.text-uppercase-spaced {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+}
+
+.soft-shadow {
+    box-shadow: 0 10px 30px rgba(10, 46, 42, 0.05);
+}
+
+.hover-lift {
+    transition: var(--transition-smooth);
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+}
+
+/* Specific Women's Section Styles */
+.flat-title .sub-title {
+    font-style: italic;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--ayuraa-text-light);
+    margin-top: 5px;
+}

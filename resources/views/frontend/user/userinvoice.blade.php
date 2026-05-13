@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Sri Kali Electronics - Admin Dashboard.">
+
+	<title>Ayuraa Fashion  - Admin Dashboard.</title>
+
+	<!-- GOOGLE FONTS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+	<link href="https://cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css" rel="stylesheet" />
+    <!-- Data Tables -->
+	<link href="{{url ('assets/plugins/data-tables/datatables.bootstrap5.min.css') }}" rel='stylesheet'>
+	<link href="{{url ('assets/plugins/data-tables/responsive.datatables.min.css') }}" rel='stylesheet'>
+
+
+	<!-- PLUGINS CSS STYLE -->
+	<link href="{{url('assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet') }}">
+	<link href="{{url ('assets/plugins/simplebar/simplebar.css') }}" rel="stylesheet" />
+    <link href="{{url ('assets/plugins/slick/slick.min.css')}}" rel='stylesheet'>
+    <link href="{{url ('assets/plugins/swiper/swiper-bundle.min.css') }}" rel='stylesheet'>
+
+	<!-- Ekka CSS -->
+	<link id="ekka-css" href="{{url ('assets/css/style.css') }}" rel="stylesheet" />
+
+	<!-- FAVICON -->
+	<link href="{{url ('frontassets/images/logo/favicon.png') }}" rel="shortcut icon" />
+
+</head>
+<body class="ec-header-fixed ec-sidebar-fixed ec-sidebar-light ec-header-light" id="body">
+
+	<!--  WRAPPER  -->
+	<div class="wrapper">
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+	integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+	crossorigin="anonymous"
+	referrerpolicy="no-referrer"
+></script>
+<style>
+    @media print {
+    #content {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }}
+</style>
+<div class="content">
+    <div class="breadcrumb-wrapper breadcrumb-wrapper-2">
+        <h1>Invoice</h1>
+        <p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+            <span><i class="mdi mdi-chevron-right"></i></span>Invoice
+        </p>
+    </div>
+    <?php if(!empty($order)){ ?>
+    <div class="card invoice-wrapper border-radius border bg-white p-4" id="content">
+        <div class="d-flex justify-content-between">
+            <h3 class="text-dark font-weight-medium">Invoice #<?= $order->id ?></h3>
+
+            <div class="btn-group">
+                <button class="btn btn-sm btn-primary" onclick="exportHTMLtoPDF(<?=$order->invoice_number?>)">
+                    <i class="mdi mdi-content-save"></i> Save
+                </button>
+
+                <button class="btn btn-sm btn-primary" onclick="printDiv()">
+                    <i class="mdi mdi-printer"></i> Print
+                </button>
+            </div>
+        </div>
+
+        <div class="row pt-5">
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <p class="text-dark mb-2">From</p>
+{{-- 
+                <address>
+                    <span>Kira Heritage</span>
+                    <br> 14, Avaram Palayam Rd,
+                    <br> Kamaraj Nagar,
+                    <br>Avarampalayam Road,
+                    <br> Coimbatore, Tamil Nadu 641006
+                    
+                    <br> <span>Email:</span> contact@kiraheritage.in
+                    <br> <span>Phone:</span> (+91) 882 555 5064
+                </address> --}}
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6">
+                <p class="text-dark mb-2">To</p>
+
+                <address>
+                    <?php if(!empty($order->address)){?>
+                        <?= $order->address->fullname?> <br>
+                        <?= $order->address->address?> ,
+                        <?= $order->address->city_name?>, <br>
+                        <?= $order->address->state_name?>,
+                        <?= $order->address->country_name?><br>
+                        landmark: <?= $order->address->landmark?>,<br>
+                        Pincode: <?= $order->address->zipcode?>,<br>
+                        Phone: <?= $order->address->phone?>.
+                    <?php }else{?>
+                     XXXXX, Inc.<br>
+                     795 XXXXX XXX, XXXX<br>
+                     XXXXXX, XX XXXX<br>
+                     <?php } ?>
+                </address>
+            </div>
+            <div class="col-xl-4 disp-none"></div>
+            <div class="col-xl-2 col-lg-4 col-sm-6">
+                <p class="text-dark mb-2">Details</p>
+
+                <address>
+                    <span>GST   :33ABEFKO209N1ZH</span>
+                    <span>Invoice ID:</span>
+                    <span class="text-dark"><?=$order->invoice_number?></span>
+                    <br><span>Date :</span> <?php echo date( "F d,Y", strtotime($order->created_date)) ?>
+                    {{-- <br> <span>VAT:</span> PL6541215450 --}}
+                </address>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table mt-3 table-striped table-responsive table-responsive-large inv-tbl"
+                style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Unit_Cost</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{-- <tr>
+                        <td>1</td>
+                        <td><img class="invoice-item-img" src="assets/img/products/p1.jpg" alt="product-image" /></td>
+                        <td>Baby Pink Shoese</td>
+                        <td>Amazing shoes with 10 day's replacement warrenty</td>
+                        <td>4</td>
+                        <td>$50.00</td>
+                        <td>$200.00</td>
+                    </tr> --}}
+                    <?php
+                    $i = 0;
+                    // print_r($order->data);
+                    foreach ($order->data as $key => $value) { ?>
+                    <tr>
+                    <td><?= $i + 1 ?></td>
+                    <td><?= $value->product_name ?><br> color: <?= $value->color_name ?>/ Size : <?= $value->size ?> </td>
+                    <td ><?= $value->quantity ?></td>
+                    <td ><?= $value->price ?></td>
+                    <td ><?= $value->quantity_price ?></td>
+                </tr>
+                <?php } ?>
+
+
+
+
+                </tbody>
+            </table>
+               <div class="row justify-content-end inc-total">
+                <div class="col-lg-3 col-xl-3 col-xl-3 ml-sm-auto">
+                    <ul class="list-unstyled mt-3">
+                        <li class="mid pb-3 text-dark"> Subtotal
+                            <span class="d-inline-block float-right text-default"><?= $order->net_amount ?></span>
+                        </li>
+                        <?php if($order->address->state != '4035' ){ ?>
+                        <li class="mid pb-3 text-dark">IGST
+                            <span class="d-inline-block float-right text-default"><?= $order->tax_amount ?></span>
+                        </li>
+                        <?php }else{ 
+                            
+                            $igst = ( $order->tax_amount / 2 );
+
+                            ?> 
+
+                            <li class="mid pb-3 text-dark">IGST
+                            <span class="d-inline-block float-right text-default"><?php echo number_format($igst, 2, '.', ''); ?></span>
+                            </li>
+                            <li class="mid pb-3 text-dark">SGST
+                            <span class="d-inline-block float-right text-default"><?php echo number_format($igst, 2, '.', ''); ?></span>
+                            </li>
+                            
+                        <?php } ?>
+
+                         <li class="mid pb-3 text-dark">Shipping
+                            <span class="d-inline-block float-right text-default"><?= $order->shipping_charge ?></span>
+                        </li>
+
+                        <li class="pb-3 text-dark">Total
+                            <span class="d-inline-block float-right"><?= $order->total_amount ?></span>
+                        </li>
+                    </ul>
+
+                    {{-- <a href="javascript:void(0)" class="btn btn-block mt-2 btn-primary btn-pill"> Procced to
+                        Payment</a> --}}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <?php } ?>
+</div> <!-- End Content -->
+
+</div> <!-- End Wrapper -->
+
+<script src="<?=url('/')?>/assets/datatable/js/jquery-3.4.1.min.js"></script>
+<script src="html2pdf.bundle.min.js"></script>
+<script type="text/javascript">
+function exportHTMLtoPDF(inv_number) {
+         let htmlElement = document.getElementById('content');
+
+         html2pdf().from(htmlElement).save('invoice-"'+inv_number+'".pdf');
+      }
+
+function printDiv() {
+     var printContents = document.getElementById('content').innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>
+
+    <!-- Common Javascript -->
+	<script src="<?= url('/') ?>/assets/plugins/jquery/jquery-3.5.1.min.js"></script>
+	<script src="<?= url('/') ?>/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="<?= url('/') ?>/assets/plugins/simplebar/simplebar.min.js"></script>
+	<script src="<?= url('/') ?>/assets/plugins/jquery-zoom/jquery.zoom.min.js"></script>
+	<script src="<?= url('/') ?>/assets/plugins/slick/slick.min.js"></script>
+    <script src="<?= url('/') ?>/assets/plugins/swiper/swiper-bundle.min.js"></script>
+
+	<!-- Chart -->
+	<script src="<?= url('/') ?>/assets/plugins/charts/Chart.min.js"></script>
+	<script src="<?= url('/') ?>/assets/js/chart.js"></script>
+
+
+
+	<!-- Date Range Picker -->
+	<script src="<?= url('/') ?>/assets/plugins/daterangepicker/moment.min.js"></script>
+    <script src="<?= url('/') ?>/assets/plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="<?= url('/') ?>/assets/js/date-range.js"></script>
+
+    <!-- Data Tables -->
+	<script src='<?= url('/') ?>/assets/plugins/data-tables/jquery.datatables.min.js'></script>
+	<script src='<?= url('/') ?>/assets/plugins/data-tables/datatables.bootstrap5.min.js'></script>
+	<script src='<?= url('/') ?>/assets/plugins/data-tables/datatables.responsive.min.js'></script>
+
+	<!-- Option Switcher -->
+	<script src="<?= url('/') ?>/assets/plugins/options-sidebar/optionswitcher.js"></script>
+
+	<!-- Ekka Custom -->
+	<script src="<?= url('/') ?>/assets/js/ekka.js"></script>
+
+
+
+</body>
+
+</html>
