@@ -62,6 +62,12 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
     transition: var(--transition-smooth);
 }
 
+.header-bg {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
 .announcement-bar {
     background: linear-gradient(90deg, var(--ayuraa-emerald), var(--ayuraa-emerald-light)) !important;
     color: var(--ayuraa-gold) !important;
@@ -85,6 +91,14 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
     font-size: 13px;
     position: relative;
     padding-bottom: 4px;
+    background: transparent !important;
+}
+
+/* Fix for template hover glitch - removing large pseudo-element height */
+.box-nav-ul .menu-item > a::after,
+.header-default .box-nav-ul .menu-item > a::after {
+    height: 0 !important;
+    display: none !important;
 }
 
 .item-link::after {
@@ -104,6 +118,7 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
 
 .item-link:hover {
     color: var(--ayuraa-gold) !important;
+    background: transparent !important;
 }
 
 /* Buttons */
@@ -296,4 +311,198 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
     font-size: 20px;
     color: var(--ayuraa-text-light);
     margin-top: 5px;
+}
+
+/* Mobile Menu Enhancements */
+#mobileMenu {
+    background-color: var(--ayuraa-obsidian) !important;
+    color: var(--ayuraa-white) !important;
+    border-right: 1px solid var(--ayuraa-gold-muted);
+}
+
+.mb-canvas-content {
+    background: transparent !important;
+}
+
+.mb-menu-link {
+    font-family: var(--font-body) !important;
+    font-weight: 400 !important;
+    color: var(--ayuraa-white) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px !important;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    transition: var(--transition-smooth);
+}
+
+.mb-menu-link:hover {
+    color: var(--ayuraa-gold) !important;
+    padding-left: 10px !important;
+}
+
+.nav-ul-mb .nav-mb-item {
+    border: none !important;
+}
+
+.mb-other-content {
+    border-top: 1px solid var(--ayuraa-gold-muted) !important;
+    padding-top: 30px !important;
+    margin-top: 20px !important;
+}
+
+.site-nav-icon {
+    color: var(--ayuraa-gold) !important;
+    font-family: var(--font-body);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mb-info li {
+    color: rgba(255,255,255,0.6) !important;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.mb-info b {
+    color: var(--ayuraa-gold) !important;
+}
+
+.icon-close-popup {
+    color: var(--ayuraa-gold) !important;
+    background: rgba(255,255,255,0.05) !important;
+}
+
+/* Mobile Announcement Bar Adjustment */
+@media (max-width: 768px) {
+    .announcement-bar {
+        height: auto !important;
+        padding: 10px 0;
+    }
+    
+    .announcement-bar p {
+        font-size: 11px !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .header-default {
+        padding: 10px 0 !important;
+    }
+    
+    .logo {
+        height: 45px !important;
+    }
+
+    #footer {
+        padding-top: 50px !important;
+        text-align: center;
+    }
+    
+    .footer-col-block {
+        margin-bottom: 35px;
+    }
+    
+    .footer-heading h6 {
+        margin-bottom: 15px;
+    }
+    
+    .footer-logo {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .tf-social-icon {
+        justify-content: center !important;
+    }
+
+    .footer-bottom-wrap {
+        justify-content: center !important;
+        text-align: center;
+        gap: 15px !important;
+    }
+
+    /* Category Section Mobile Fixes */
+    .flat-title .title {
+        font-size: 28px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .flat-title .sub-title {
+        font-size: 16px !important;
+    }
+    
+    .collection-item.style-2 .collection-content {
+        bottom: 12px !important;
+        left: 8px !important;
+        right: 8px !important;
+        width: calc(100% - 16px) !important;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .collection-item.style-2 .collection-content .tf-btn {
+        padding: 8px 12px !important;
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+        width: 100% !important;
+        max-width: 140px !important;
+        min-width: unset !important;
+        height: auto !important;
+        line-height: 1.4 !important;
+    }
+    
+    .collection-image.img-style {
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .tf-grid-layout.md-col-2 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .tf-image-wrap {
+        margin-bottom: 20px;
+    }
+
+    .tf-content-wrap .heading {
+        font-size: 32px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .tf-content-wrap .description {
+        font-size: 14px !important;
+        margin-bottom: 25px !important;
+    }
+
+    .nav-sw {
+        display: none !important;
+    }
+}
+
+/* Toolbar Bottom (Mobile) */
+.tf-toolbar-bottom {
+    background-color: var(--ayuraa-obsidian) !important;
+    border-top: 1px solid var(--ayuraa-gold-muted) !important;
+    backdrop-filter: blur(10px);
+}
+
+.tf-toolbar-bottom .toolbar-label {
+    color: var(--ayuraa-white) !important;
+    font-family: var(--font-body);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tf-toolbar-bottom .toolbar-icon i {
+    color: var(--ayuraa-gold) !important;
+}
+
+.tf-toolbar-bottom .toolbar-item.active .toolbar-label,
+.tf-toolbar-bottom .toolbar-item:hover .toolbar-label {
+    color: var(--ayuraa-gold) !important;
 }

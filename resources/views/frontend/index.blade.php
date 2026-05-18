@@ -51,7 +51,7 @@
             <div class="container">
                 <div class="tf-grid-layout md-col-2 tf-img-with-text style-2 align-items-center">
                     <div class="tf-image-wrap wow fadeInUp" data-wow-delay="0s" style="border: 1px solid var(--ayuraa-gold-muted); padding: 10px;">
-                        <img class="lazyload" data-src="<?= url('/') ?>/frontassets/images/collections/mart-collection.png" src="<?= url('/') ?>/frontassets/images/collections/mart-collection.png" alt="collection-img">
+                        <img class="lazyload" data-src="<?= url('/') ?>/frontassets/images/collections/mart-collection.jpg" src="<?= url('/') ?>/frontassets/images/collections/mart-collection.jpg" alt="collection-img" style="width: fit-content">
                     </div>
                     <div class="tf-content-wrap text-center w-100 wow fadeInUp" data-wow-delay="0.2s">
                         <span class="sub-heading text-uppercase fw-7 text-gold letter-spacing-2">ELEGANCE REDEFINED</span>
@@ -259,7 +259,7 @@
                         <div class="swiper-slide">
                             <div class="gallery-item hover-img wow fadeInUp" data-wow-delay=".1s">
                                 <div class="img-style">
-                                    <img class="lazyload img-hover" data-src="<?= url('/') ?>/frontassets/images/shop/gallery/twoTwo.jpg" src="<?= url('/') ?>/frontassets/images/shop/gallery/twoTwo.jpg" alt="image-gallery">
+                                    <img class="lazyload img-hover" data-src="<?= url('/') ?>/frontassets/images/shop/gallery/twoTwo.png" src="<?= url('/') ?>/frontassets/images/shop/gallery/twoTwo.png" alt="image-gallery">
                                 </div>
                                 <a href="#quick_add" data-bs-toggle="modal" class="box-icon"><span class="icon icon-bag"></span> <span class="tooltip">Quick Add</span></a>
                             </div>

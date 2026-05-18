@@ -25,7 +25,7 @@
             </div>
             <div class="col-xl-3 col-md-4 col-6">
                 <a href="<?= url('/') ?>/" class="logo-header">
-                    <img src="<?= url('/') ?>/frontassets/images/logo/logo1-removebg-preview.png" alt="logo" class="logo" style="height: 60px; width: auto;">
+                    <img src="<?= url('/') ?>/frontassets/images/logo/logo-ayurra.png" alt="logo" class="logo" style="height: 60px; width: auto;">
                 </a>
             </div>
             <div class="col-xl-6 tf-md-hidden" >

@@ -39,8 +39,8 @@ Timeless style. Effortless grace. That’s the Kira Heritage way.</p>
                 <!-- <img class="lazyload w-100" data-src="<?= url('/') ?>/frontassets/images/collections/4b05ab0f8445b6fc2e48d5b1e5014d20eeeee.jpg src="<?= url('/') ?>/frontassets/images/collections/4b05ab0f8445b6fc2e48d5b1e5014d20eeeee.jpg" alt="collection-img"> -->
 
                 <img class="lazyload w-100" 
-     data-src="<?= url('/') ?>/frontassets/images/collections/ChatG.png" 
-     src="<?= url('/') ?>/frontassets/images/collections/ChatG.png" 
+     data-src="<?= url('/') ?>/frontassets/images/collections/ChatG.jpg" 
+     src="<?= url('/') ?>/frontassets/images/collections/ChatG.jpg" 
      alt="collection-img">
 
             </div>
@@ -120,7 +120,7 @@ We stand for authenticity over trend, quality over quantity, and grace over gran
                 </div> --}}
                 <div class="tf-image-wrap box-img item-2">
                     <div class="img-style">
-                        <img class="lazyload" src="<?= url('/') ?>/frontassets/images/collections/ChatGPT-Image.png" data-src="<?= url('/') ?>/frontassets/images/collections/ChatGPT-Image.png" alt="img-slider">
+                        <img class="lazyload" src="<?= url('/') ?>/frontassets/images/collections/ChatGPT-Image.jpg" data-src="<?= url('/') ?>/frontassets/images/collections/ChatGPT-Image.jpg" alt="img-slider">
                     </div>
                 </div>
             </div>

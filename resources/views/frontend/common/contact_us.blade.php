@@ -24,7 +24,7 @@
                 </div>
                 <div class="mb_20">
                     <p class="mb_15"><strong>Phone</strong></p>
-                    <p>(+91) 999 888 7777</p>
+                    <p>(+91) 123 456 7890</p>
                 </div>
                 <div class="mb_20">
                     <p class="mb_15"><strong>Email</strong></p>

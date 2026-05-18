@@ -2,7 +2,7 @@
 
     <div class="ec-brand">
         <a href="<?= url('/') ?>/" title="Ekka">
-            <img class="ec-brand-icon" src="<?= url('/') ?>/frontassets/images/logo/Capture-removebg-footer.png" alt="" style="width: 80%;"/>
+            <img class="ec-brand-icon" src="<?= url('/') ?>/frontassets/images/logo/logo-ayurra.png" style="width: 90px"/>
             {{-- <span class="ec-brand-name text-truncate">Ekka</span> --}}
         </a>
     </div>

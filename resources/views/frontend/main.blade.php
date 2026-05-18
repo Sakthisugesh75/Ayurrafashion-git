@@ -15,7 +15,7 @@
     <link rel="canonical" href="<?= url('/') ?>">
 
     <!-- Favicon -->
-    <link rel="icon" href="https://kiraheritage.in/frontassets/images/logo/favicon.png" type="image/png">
+    <link rel="icon" href="https://ayurra-fashion.com/frontassets/images/logo/favicon.png" type="image/png">
 
     <!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
     <meta property="og:type" content="website">
