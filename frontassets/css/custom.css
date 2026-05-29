@@ -654,3 +654,51 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
     padding-right: 0 !important;
     text-indent: 0 !important;
 }
+
+/* Responsive Enhancements for Custom Features */
+@media (max-width: 768px) {
+    /* Related Products Section Header */
+    .flat-title .title {
+        font-size: 28px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .flat-title .sub-title {
+        font-size: 15px !important;
+    }
+
+    /* Related Product Card Titles */
+    .card-product .title.link {
+        font-size: 15px !important;
+    }
+    
+    /* Social Share Buttons */
+    .tf-product-info-share {
+        margin-top: 20px !important;
+        padding-top: 15px !important;
+    }
+    
+    .share-icon-btn {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Shopping Cart Mobile Improvements */
+    .tf-table-page-cart tbody tr {
+        padding: 20px 0 !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Further scaling on extra small mobile screens */
+    .flat-title .title {
+        font-size: 24px !important;
+    }
+    
+    .card-product .title.link {
+        font-size: 14px !important;
+    }
+}

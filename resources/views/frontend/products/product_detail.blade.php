@@ -131,7 +131,7 @@ exit;
                                     <a href="javascript:void(0);" class="tf-btn btn-outline w-100" onclick="addtocart(<?php echo $products->id ?>)">BUY IT NOW</a>
                                 </div>
 
-                                <!-- Social Sharing -->
+                              
                                 <div class="tf-product-info-share mt-4 pt-4 border-top">
                                     <div class="d-flex align-items-center gap-15">
                                         <span class="text-uppercase fw-5 text_black-2" style="font-size: 12px; letter-spacing: 1px;">Share:</span>
@@ -598,7 +598,7 @@ if (login == true) {
         });
     }
 
-    function shareProductNative() {
+    function  shareProductNative() {
         if (navigator.share) {
             navigator.share({
                 title: '<?php echo addslashes($products->product_name) ?>',
