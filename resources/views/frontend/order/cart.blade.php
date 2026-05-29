@@ -52,7 +52,7 @@
                                             <a href="<?= url('/') ?>/product/<?= $item->slug ?>/<?= $item->prod_color ?>" class="cart-title link"><?= $item->product_name ?></a>
                                             <div class="cart-meta-variant"><?= $item->color_name ?> / <?= $item->size ?></div>
                                             <span class="remove-cart" id="<?= $item->session_id ?>"
-                                                data-hash="<?= $item->product_id ?>">Remove</span>
+                                                data-hash="<?= $item->product_id ?>" data-cart-id="<?= $item->cart_id ?>">Remove</span>
                                         </div>
                                     </td>
                                     <td class="tf-cart-item_price tf-variant-item-price" cart-data-title="Price">
@@ -197,12 +197,14 @@
                 if (result.isConfirmed) {
                     var product_id = $(this).attr('data-hash');
                     var session_id = $(this).attr('id');
+                    var cart_id = $(this).attr('data-cart-id');
                     $.ajax({
                         type: 'POST',
                         url: '<?php echo url('/'); ?>/api/v1/order/remove-cart',
                         data: {
                             'product_id': product_id,
-                            'session_id': session_id
+                            'session_id': session_id,
+                            'cart_id': cart_id
                         },
                         success: function(data) {
                             console.log(data);

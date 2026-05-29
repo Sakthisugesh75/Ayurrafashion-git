@@ -40,6 +40,19 @@
                     </div>
 
                     <div class="tf-field style-1 mb_30">
+                        <div class="select-custom">
+                            <select class="tf-select w-100" id="country" name="country" onchange="getState()">
+                                <option value="">Select Country *</option>
+                                <?php
+                                if(!empty($country)){
+                                foreach ($country as $item) { ?>
+                                <option value="<?=$item->country_id?>" <?php if($item->country_id == '101'){ ?> selected <?php } ?>><?=$item->country_name?></option>
+                                <?php   }} ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="tf-field style-1 mb_30">
 
                             <div class="select-custom">
 
@@ -96,6 +109,32 @@
 
 
 
+    function getState(){
+            let id = $("#country").val();
+            if (id) {
+                $.ajax({
+                    type:'GET',
+                    url:'<?php echo url('/');?>/api/v1/state/getStateByCountry',
+                    data:{'id': id},
+                    success:function(data) {
+                        console.log(data);
+                        if (data.status == "SUCCESS") {
+                             $("#state").empty();
+                             $("#state").append("<option value=''>Select State</option>");
+                             $("#city").empty();
+                             $("#city").append("<option value=''>Select City</option>");
+                             for(let i = 0; i < data.list.length; i++) {
+                                  $("#state").append("<option value='"+data.list[i].state_id+"'>"+data.list[i].state_name+'</option>');
+                             }
+                        }
+                    }
+                });
+            } else {
+                $("#state").empty().append("<option value=''>Select State</option>");
+                $("#city").empty().append("<option value=''>Select City</option>");
+            }
+    }
+
     function getCity(){
         // alert("ADFA");
             let id = $("#state").val();
@@ -109,7 +148,7 @@
 
                             if (data.status == "SUCCESS") {
                                  $("#city").empty();
-                                 $("#city").append("<option>Select City</option>");
+                                 $("#city").append("<option value=''>Select City</option>");
                                  console.log(data.list.length);
                                     for(let i = 0; i < data.list.length; i++) {
                                          $("#city").append("<option value='"+data.list[i].city_id+"'>"+data.list[i].city_name+'</option>');

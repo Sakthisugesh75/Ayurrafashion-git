@@ -8,7 +8,7 @@
                         <div class="footer-infor">
                             <div class="footer-logo">
                                 <a href="<?= url('/') ?>/">
-                                    <img src="<?= url('/') ?>/frontassets/images/logo/logo1-removebg-preview.png" alt="Ayuraa Fashion Logo" style="height: 70px; width: auto;">
+                                    <img src="<?= url('/') ?>/frontassets/images/logo/logo-ayurranew.png" alt="Ayuraa Fashion Logo" style="height: 70px; width: auto;">
                                 </a>
                             </div>
                 

@@ -25,7 +25,7 @@
             </div>
             <div class="col-xl-3 col-md-4 col-6">
                 <a href="<?= url('/') ?>/" class="logo-header">
-                    <img src="<?= url('/') ?>/frontassets/images/logo/logo-ayurra.png" alt="logo" class="logo" style="height: 60px; width: auto;">
+                    <img src="<?= url('/') ?>/frontassets/images/logo/logo-ayurranew.png" alt="logo" class="logo" style="height: 60px; width: auto;">
                 </a>
             </div>
             <div class="col-xl-6 tf-md-hidden" >
@@ -50,7 +50,6 @@
                     position: absolute;
                     top: 100%;
                     right: 0;
-                    background: var(--ayuraa-white);
                     border: 1px solid rgba(0,0,0,0.05);
                     border-radius: 0;
                     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -116,7 +115,7 @@
                         <a href="javascript:void(0);" class="nav-icon-item">
                             <i class="icon icon-account"></i>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="margin-top: 0">
                             <li><a href="<?= url('/') ?>/my-profile">Profile</a></li>
                             <li><a href="<?= url('/') ?>/my-wishlist">Wishlist</a></li>
                             <li><a href="<?= url('/') ?>/logout">Logout</a></li>
@@ -482,7 +481,7 @@ if(user_id){
                             var img ="<?= url('/') ?>/"+data.data[i].image_url;
                             var url ="<?= url('/') ?>/product/"+data.data[i].slug+"/"+data.data[i].color;
 
-                            a += '<div class="tf-mini-cart-item"><div class="tf-mini-cart-image"><a href="'+url+'"><img src="'+img+'" alt="image"></a></div><div class="tf-mini-cart-info"><a class="title link" href="'+url+'">'+data.data[i].product_name+'</a><div class="price fw-6">Rs.'+data.data[i].price+'</div><div class="tf-mini-cart-btns"><div class="wg-quantity small">'+data.data[i].quantity+'</div><div class="tf-mini-cart-remove remove-cart" id="'+data.data[i].session_id+'" data-hash="'+data.data[i].product_id+'">Remove</div></div></div></div>';
+                            a += '<div class="tf-mini-cart-item"><div class="tf-mini-cart-image"><a href="'+url+'"><img src="'+img+'" alt="image"></a></div><div class="tf-mini-cart-info"><a class="title link" href="'+url+'">'+data.data[i].product_name+'</a><div class="price fw-6">Rs.'+data.data[i].price+'</div><div class="tf-mini-cart-btns"><div class="wg-quantity small">'+data.data[i].quantity+'</div><div class="tf-mini-cart-remove remove-cart" id="'+data.data[i].session_id+'" data-hash="'+data.data[i].product_id+'" data-cart-id="'+data.data[i].cart_id+'">Remove</div></div></div></div>';
                             total += parseInt(data.data[i].quantity_price);
                         }
 
@@ -524,10 +523,11 @@ Swal.fire({
         if (result.isConfirmed) {
             var product_id = $(this).attr('data-hash');
             var session_id = $(this).attr('id');
+            var cart_id = $(this).attr('data-cart-id');
         $.ajax({
                     type:'POST',
                     url:'<?php echo url('/');?>/api/v1/order/remove-cart',
-                    data:{'product_id': product_id,'session_id':session_id},
+                    data:{'product_id': product_id,'session_id':session_id,'cart_id':cart_id},
                     success:function(data) {
                         console.log(data);
                         if(data.status =="SUCCESS")

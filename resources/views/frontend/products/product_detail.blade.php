@@ -131,6 +131,31 @@ exit;
                                     <a href="javascript:void(0);" class="tf-btn btn-outline w-100" onclick="addtocart(<?php echo $products->id ?>)">BUY IT NOW</a>
                                 </div>
 
+                                <!-- Social Sharing -->
+                                <div class="tf-product-info-share mt-4 pt-4 border-top">
+                                    <div class="d-flex align-items-center gap-15">
+                                        <span class="text-uppercase fw-5 text_black-2" style="font-size: 12px; letter-spacing: 1px;">Share:</span>
+                                        <div class="d-flex gap-10">
+                                            @php
+                                                $productUrl = urlencode(url()->current());
+                                                $productName = urlencode($products->product_name);
+                                            @endphp
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $productUrl }}" target="_blank" class="share-icon-btn facebook" title="Share on Facebook">
+                                                <i class="icon icon-fb"></i>
+                                            </a>
+                                            <a href="https://api.whatsapp.com/send?text={{ $productName }}%20{{ $productUrl }}" target="_blank" class="share-icon-btn whatsapp" title="Share on WhatsApp">
+                                                <i class="icon icon-whatsapp"></i>
+                                            </a>
+                                            <a href="javascript:void(0);" onclick="copyProductLink()" class="share-icon-btn instagram" title="Copy Link for Instagram">
+                                                <i class="icon icon-instagram"></i>
+                                            </a>
+                                            <a href="javascript:void(0);" onclick="shareProductNative()" class="share-icon-btn tiktok" title="Share Product">
+                                                <i class="icon icon-share"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="tf-product-info-trust-seal pt-4 border-top">
                                     <div class="row align-items-center">
                                         <div class="col-6">
@@ -372,6 +397,65 @@ exit;
     </section>
     <!-- /tabs -->
 
+    @php
+        $relatedProducts = DB::table('products')
+            ->leftJoin('category','category.id','=','products.category_id')
+            ->leftJoin('color','color.id','=','products.color')
+            ->select('products.*','category.category_name','category.slug as cat_slug','color.color as color_name')
+            ->where('products.category_id', $products->category_id)
+            ->where('products.id', '!=', $products->id)
+            ->where('products.status', '1')
+            ->limit(4)
+            ->get();
+
+        if ($relatedProducts->isEmpty()) {
+            $relatedProducts = DB::table('products')
+                ->leftJoin('category','category.id','=','products.category_id')
+                ->leftJoin('color','color.id','=','products.color')
+                ->select('products.*','category.category_name','category.slug as cat_slug','color.color as color_name')
+                ->where('products.id', '!=', $products->id)
+                ->where('products.status', '1')
+                ->limit(4)
+                ->get();
+        }
+    @endphp
+
+    <!-- Related Products -->
+    <section class="flat-spacing-1 pt_0">
+        <div class="container">
+            <div class="flat-title text-center mb-5">
+                <span class="title font-heading" style="font-size: 36px; letter-spacing: 1.5px; position: relative; padding-bottom: 15px;">Related Products</span>
+                <p class="sub-title mt-2">You might also love these curated boutique styles</p>
+            </div>
+            <div class="row mt-4">
+                @foreach($relatedProducts as $related)
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-6 mb-4">
+                        <div class="card-product grid" style="border: none; background: transparent; transition: all 0.4s ease;">
+                            <div class="card-product-wrapper" style="position: relative; overflow: hidden; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+                                <a href="{{ url('/') }}/product/{{ $related->slug }}/{{ $related->color }}" class="product-img d-block">
+                                    @if($related->image_url == null)
+                                        <img class="lazyload img-product w-100" data-src="{{ url('/') }}/frontassets/images/products/orange-1.jpg" src="{{ url('/') }}/frontassets/images/products/orange-1.jpg" alt="image-product" style="object-fit: cover; aspect-ratio: 3/4;">
+                                    @else
+                                        <img class="lazyload img-product w-100" data-src="{{ url('/') }}/{{ $related->image_url }}" src="{{ url('/') }}/{{ $related->image_url }}" alt="image-product" style="object-fit: cover; aspect-ratio: 3/4;">
+                                    @endif
+                                </a>
+                                <div class="list-product-btn absolute-2" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; transition: all 0.3s ease; z-index: 2;">
+                                    <a href="{{ url('/') }}/product/{{ $related->slug }}/{{ $related->color }}" class="box-icon bg_white quick-add tf-btn-loading" style="width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--ayuraa-emerald); transition: var(--transition-smooth);">
+                                        <span class="icon icon-bag" style="font-size: 16px;"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-product-info text-center mt-3">
+                                <a href="{{ url('/') }}/product/{{ $related->slug }}/{{ $related->color }}" class="title link d-block font-heading" style="font-size: 18px; color: var(--ayuraa-obsidian); text-decoration: none; transition: color 0.3s ease;">{{ $related->product_name }}</a>
+                                <span class="price current-price fw-5 mt-1 d-block" style="color: var(--ayuraa-gold-muted); font-size: 15px;">Rs.{{ $related->price }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- /Related Products -->
 
     <!-- product tab end -->
 
@@ -496,13 +580,38 @@ if (login == true) {
       });
     });
 
+    function copyProductLink() {
+        var dummy = document.createElement('input'),
+        text = window.location.href;
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        
+        Swal.fire({
+            title: 'Link Copied!',
+            text: 'Product link copied to clipboard. You can now share it on Instagram, TikTok, or anywhere else!',
+            icon: 'success',
+            timer: 2500,
+            showConfirmButton: false
+        });
+    }
 
-
-
-
-
-
-
-
+    function shareProductNative() {
+        if (navigator.share) {
+            navigator.share({
+                title: '<?php echo addslashes($products->product_name) ?>',
+                text: 'Check out this gorgeous designer kurti on Ayuraa Fashion!',
+                url: window.location.href
+            }).then(() => {
+                console.log('Product shared successfully!');
+            }).catch((err) => {
+                console.log('Error sharing product:', err);
+            });
+        } else {
+            copyProductLink();
+        }
+    }
      </script>
 @endsection

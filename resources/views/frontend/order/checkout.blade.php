@@ -32,6 +32,17 @@
                          <label for="address">Address</label>
                          <input type="text" id="address" name="address">
                      </fieldset>
+                     <fieldset class="box fieldset">
+                         <label for="country">Country</label>
+                         <div class="select-custom">
+                             <select class="tf-select w-100" id="country" name="country" onchange="getState()">
+                                 <option value="">Select Country *</option>
+                                 @foreach ($country as $item)
+                                     <option value="{{ $item->country_id }}" {{ $item->country_id == '101' ? 'selected' : '' }}>{{ $item->country_name }}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                     </fieldset>
                      <div class="box grid-2">
                          <fieldset class="box fieldset">
                              <label for="state">State/Region</label>
@@ -179,7 +190,7 @@ let mobile = $('#mobile').val();
 let email = $('#email').val();
 let city = $('#city').val();
 let state = $('#state').val();
-let country = '101';
+let country = $('#country').val();
 let postcode = $('#postcode').val();
 let address = $('#address').val();
 let order_notes = $('#order_notes').val();
@@ -304,9 +315,33 @@ if (fullname != "" && address != "" && postcode != "" && city != "" && state != 
 // }
 }
 
-
-
-
+function getState() {
+    var country = $('#country').val();
+    if (country) {
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo url('/'); ?>/api/v1/state/getStateByCountry',
+            data: {
+                'id': country
+            },
+            success: function(data) {
+                console.log(data);
+                if (data.status == "SUCCESS") {
+                    $("#state").empty();
+                    $("#state").append("<option value=''>Select State</option>");
+                    $("#city").empty();
+                    $("#city").append("<option value=''>Select City</option>");
+                    for (var i = 0; i < data.list.length; i++) {
+                        $("#state").append("<option value='" + data.list[i].state_id + "'>" + data.list[i].state_name + '</option>');
+                    }
+                }
+            }
+        });
+    } else {
+        $("#state").empty().append("<option value=''>Select State</option>");
+        $("#city").empty().append("<option value=''>Select City</option>");
+    }
+}
 
 function getCity() {
 var state = $('#state').val();

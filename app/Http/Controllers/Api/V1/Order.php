@@ -295,10 +295,8 @@ if($combo == "0"){
       $this->checkValidator($rules);
       $product_id=$this->request->input('product_id');
       $session_id=$this->request->input('session_id');
-    //   echo $product_id;
-    //   echo $session_id;
-    //   exit;
-      $record = $this->morder->removecart($session_id,$product_id);
+      $cart_id=$this->request->input('cart_id');
+      $record = $this->morder->removecart($session_id,$product_id,$cart_id);
       if($record['status'] == "S"){
         $this->_response_data['status']="SUCCESS";
         $this->_response_data['code']="201";

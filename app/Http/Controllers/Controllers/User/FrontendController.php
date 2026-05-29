@@ -249,25 +249,20 @@ class FrontendController extends Controller{
       }
 
       function user_register(){
-        // $country = $this->mcountry->getallCountry();
-        // if(!empty($country)){
-        //     $this->data['country']=$country;
-        // }else{
-        //     $this->data['country']= [];
-        // }
-        $country = '101';
-        $state = $this->mstate->getStateByCountry($country);
+        $country = $this->mcountry->getallCountry();
+        if(!empty($country)){
+            $this->data['country']=$country;
+        }else{
+            $this->data['country']= [];
+        }
+        $defaultCountry = '101';
+        $state = $this->mstate->getStateByCountry($defaultCountry);
         if(!empty($state)){
             $this->data['state']=$state;
         }else{
             $this->data['state']= [];
         }
-        $city = $this->mcity->getallCity();
-        if(!empty($city)){
-            $this->data['city']=$city;
-        }else{
-            $this->data['city']= [];
-        }
+        $this->data['city']= [];
 
         return view('frontend.common.user_register', $this->data);
       }
@@ -403,19 +398,20 @@ class FrontendController extends Controller{
                 $this->data['cart'] = [];
             }
 
-            $country = '101';
-            $state = $this->mstate->getStateByCountry($country);
+            $countryList = $this->mcountry->getallCountry();
+            if(!empty($countryList)){
+                $this->data['country']=$countryList;
+            }else{
+                $this->data['country']= [];
+            }
+            $defaultCountry = '101';
+            $state = $this->mstate->getStateByCountry($defaultCountry);
             if(!empty($state)){
                 $this->data['state']=$state;
             }else{
                 $this->data['state']= [];
             }
-            $city = $this->mcity->getallCity();
-            if(!empty($city)){
-                $this->data['city']=$city;
-            }else{
-                $this->data['city']= [];
-            }
+            $this->data['city']= [];
         return view('frontend.order.checkout', $this->data);
       }
 

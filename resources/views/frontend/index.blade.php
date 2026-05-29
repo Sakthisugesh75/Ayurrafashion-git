@@ -173,22 +173,14 @@
                                             <?php } ?>
 
 
-                                        </a>
+                                        </a>`
                                         <div class="list-product-btn column-right">
                                             <a href="javascript:void(0);" class="box-icon wishlist btn-icon-action">
                                                 <span class="icon icon-heart"></span>
                                                 <span class="tooltip">Add to Wishlist</span>
                                                 <span class="icon icon-delete"></span>
                                             </a>
-                                            {{-- <a href="#compare" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="box-icon bg_white compare btn-icon-action">
-                                                <span class="icon icon-compare"></span>
-                                                <span class="tooltip">Add to Compare</span>
-                                                <span class="icon icon-check"></span>
-                                            </a>
-                                            <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
-                                                <span class="icon icon-view"></span>
-                                                <span class="tooltip">Quick View</span>
-                                            </a> --}}
+                                           
                                         </div>
                                         <div class="list-product-btn absolute-3">
                                             <a href="<?= url('/') ?>/product/<?= $data->slug ?>/<?=$data->color ?>" class="box-icon bg_white quick-add tf-btn-loading style-2">

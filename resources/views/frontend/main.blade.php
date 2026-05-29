@@ -62,7 +62,7 @@
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://kiraheritage.in/#website",
+      "@id": "https://ayurra-fashion.com/#website",
       "url": "https://ayurra-fashion.com/",
       "name": "Ayuraa Fashion",
       "description": "Ayuraa Fashion is a women's wear brand specializing in premium designer short kurtis.",
@@ -83,7 +83,7 @@
       "url": "https://ayurra-fashion.com/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://kiraheritage.in/path-to-logo.png"
+        "url": "https://ayurra-fashion.com/path-to-logo.png"
       },
       "sameAs": [
         "https://www.facebook.com/your-page",

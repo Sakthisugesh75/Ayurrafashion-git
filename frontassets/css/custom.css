@@ -57,25 +57,25 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
 
 /* Header & Navigation */
 #header {
-    background-color: var(--ayuraa-white) !important;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: linear-gradient(90deg, var(--ayuraa-emerald), var(--ayuraa-emerald-light)) !important;
+    border-bottom: 1px solid var(--ayuraa-gold-muted) !important;
     transition: var(--transition-smooth);
 }
 
 .header-bg {
-    background-color: rgba(255, 255, 255, 0.95) !important;
+    background: linear-gradient(90deg, var(--ayuraa-emerald), var(--ayuraa-emerald-light)) !important;
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
 }
 
 .announcement-bar {
-    background: linear-gradient(90deg, var(--ayuraa-emerald), var(--ayuraa-emerald-light)) !important;
-    color: var(--ayuraa-gold) !important;
-    border-bottom: 1px solid var(--ayuraa-gold-muted);
+    background: var(--ayuraa-white) !important;
+    color: var(--ayuraa-obsidian) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
 }
 
 .announcement-bar p {
-    color: var(--ayuraa-gold) !important;
+    color: var(--ayuraa-obsidian) !important;
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 1.5px;
@@ -85,13 +85,83 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
 .item-link {
     font-family: var(--font-body) !important;
     font-weight: 400 !important;
-    color: var(--ayuraa-obsidian) !important;
+    color: var(--ayuraa-gold) !important;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 13px;
     position: relative;
     padding-bottom: 4px;
     background: transparent !important;
+}
+
+/* Header elements and SVG overrides for emerald background */
+#header svg, #header svg path {
+    color: var(--ayuraa-gold) !important;
+    fill: var(--ayuraa-gold) !important;
+    transition: var(--transition-smooth);
+}
+
+#header a:hover svg, #header a:hover svg path {
+    color: var(--ayuraa-white) !important;
+    fill: var(--ayuraa-white) !important;
+}
+
+.nav-icon-item {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+.nav-icon {
+    gap: 35px !important;
+}
+
+@media (max-width: 768px) {
+    .nav-icon {
+        gap: 20px !important;
+    }
+}
+
+.nav-icon-item i {
+    color: var(--ayuraa-gold) !important;
+    transition: var(--transition-smooth);
+}
+
+.nav-icon-item:hover i {
+    color: var(--ayuraa-white) !important;
+}
+
+.count-box {
+    position: absolute !important;
+    top: -6px !important;
+    right: -8px !important;
+    background-color: var(--ayuraa-gold) !important;
+    color: var(--ayuraa-white) !important;
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1.5px solid var(--ayuraa-emerald) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+    z-index: 5 !important;
+}
+
+.dropdown-menu {
+    background-color: var(--ayuraa-emerald-light) !important;
+    border: 1px solid var(--ayuraa-gold-muted) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+}
+
+.dropdown-menu a {
+    color: var(--ayuraa-gold) !important;
+}
+
+.dropdown-menu a:hover {
+    background: var(--ayuraa-emerald) !important;
+    color: var(--ayuraa-white) !important;
 }
 
 /* Fix for template hover glitch - removing large pseudo-element height */
@@ -108,7 +178,7 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
     left: 0;
     width: 0;
     height: 1px;
-    background-color: var(--ayuraa-gold);
+    background-color: var(--ayuraa-white) !important;
     transition: var(--transition-smooth);
 }
 
@@ -117,7 +187,7 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
 }
 
 .item-link:hover {
-    color: var(--ayuraa-gold) !important;
+    color: var(--ayuraa-white) !important;
     background: transparent !important;
 }
 
@@ -505,4 +575,82 @@ h1, h2, h3, h4, h5, h6, .title, .heading {
 .tf-toolbar-bottom .toolbar-item.active .toolbar-label,
 .tf-toolbar-bottom .toolbar-item:hover .toolbar-label {
     color: var(--ayuraa-gold) !important;
+}
+
+/* Related Products Hover Interactions */
+.card-product:hover .card-product-wrapper img {
+    transform: scale(1.05);
+}
+
+.card-product .card-product-wrapper img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-product:hover .list-product-btn {
+    opacity: 1 !important;
+}
+
+.card-product .list-product-btn a:hover {
+    background-color: var(--ayuraa-gold) !important;
+    color: var(--ayuraa-white) !important;
+    transform: scale(1.1);
+}
+
+/* Social Sharing Options */
+.tf-product-info-share {
+    margin-top: 25px;
+    padding-top: 20px;
+}
+
+.share-icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.08);
+    background-color: var(--ayuraa-off-white);
+    color: var(--ayuraa-obsidian) !important;
+    font-size: 16px;
+    transition: var(--transition-smooth);
+    text-decoration: none !important;
+}
+
+.share-icon-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    color: var(--ayuraa-white) !important;
+}
+
+.share-icon-btn.facebook:hover {
+    background-color: #1877F2 !important;
+    border-color: #1877F2 !important;
+}
+
+.share-icon-btn.whatsapp:hover {
+    background-color: #25D366 !important;
+    border-color: #25D366 !important;
+}
+
+.share-icon-btn.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+    border-color: #dc2743 !important;
+}
+
+.share-icon-btn.tiktok:hover {
+    background-color: #010101 !important;
+    border-color: #010101 !important;
+}
+
+.share-icon-btn.tiktok i {
+    color: inherit;
+}
+
+/* Center Align Shopping Cart Quantity Inputs */
+.wg-quantity input {
+    text-align: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-indent: 0 !important;
 }

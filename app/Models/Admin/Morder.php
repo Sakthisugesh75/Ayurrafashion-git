@@ -384,7 +384,16 @@ class Morder extends Model
       );
       $user_id=DB::table('cart')->insertGetId($user_data);
     }else{
-      $records = DB::table('cart')->where('session_id', $session_id)->where('product_id', $product_id)->first();
+      $query = DB::table('cart')
+          ->where('session_id', $session_id)
+          ->where('product_id', $product_id)
+          ->where('combo', $combo);
+      if ($combo == "0") {
+          $query->where('size', $size)->where('color', $color);
+      } else {
+          $query->where('data', $data);
+      }
+      $records = $query->first();
       if (!empty($records)) {
         $quantity = $records->quantity + 1;
         $quantity_price = $records->price * $quantity;
@@ -426,8 +435,14 @@ class Morder extends Model
 }
 
 
-  public function removecart($session_id,$product_id){
-    $records = DB::table('cart')->where('session_id', $session_id)->where('product_id', $product_id)->first();
+  public function removecart($session_id, $product_id, $cart_id = null){
+    $query = DB::table('cart')->where('session_id', $session_id);
+    if ($cart_id) {
+        $query->where('cart_id', $cart_id);
+    } else {
+        $query->where('product_id', $product_id);
+    }
+    $records = $query->first();
     if (!empty($records)) {
       $quantity = $records->quantity - 1;
       $quantity_price = $records->price * $quantity;
