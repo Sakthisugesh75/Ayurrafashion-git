@@ -133,8 +133,7 @@
                                         <input type="number" class="form-control" id="old_price" name="old_price" value="<?=$record->old_price?>">
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Purchased Price <span>( In INR
-                                                )</span></label>
+                                        <label class="form-label">Purchased Price</label>
                                         <input type="number" class="form-control" id="p_price" name="p_price" value="<?=$record->purchased_price?>">
                                     </div>
                                     <div class="col-md-6">
@@ -159,11 +158,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Additional Information</label>
-                                        <textarea class="form-control" rows="4" id="additional" name="additional"></textarea>
+                                        <textarea class="form-control" rows="4" id="add_detail" name="add_detail"><?=$record->add_info ?? $record->add_detail ?? ''?></textarea>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label">Product Tags <span>( Type and
-                                                make comma to separate tags )</span></label>
+                                        <label class="form-label">Product Tags </label>
                                         <input type="text" class="form-control" id="group_tag"
                                             name="group_tag"  placeholder=""
                                             data-role="tagsinput" value="<?=$record->tags?>"/>
@@ -216,8 +214,33 @@
 </div> <!-- End Content -->
 <script src="<?=url('/')?>/assets/datatable/js/jquery-3.4.1.min.js"></script>
 <script src="<?php echo url('/');?>/assets/datatable/js/sweetalert2@11.js"></script>
+    <link href="{{url ('assets/summernote/summernote-bs5.css') }}" rel="stylesheet">
+<script src="{{url ('assets/summernote/summernote-bs5.js') }}"></script>
 <script type="text/javascript">
 window.onload = function(){
+
+
+localStorage.clear();
+
+    $('#add_detail,#details').summernote({
+    placeholder: 'Product Description',
+    tabsize: 2,
+    height: 250,
+    toolbar: [
+    ['style', ['style']],
+    ['font', ['bold', 'italic', 'underline', 'clear']],
+    ['fontname', ['fontname']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']],
+    ['table', ['table']],
+    ['insert', ['link', 'picture', 'hr']],
+    ['view', ['fullscreen', 'codeview']],
+    ['help', ['help']]
+  ],
+  });
+
+
 
 var formInstance = document.getElementById('form');
 formInstance.addEventListener('submit', function(event) {

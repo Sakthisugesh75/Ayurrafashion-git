@@ -135,7 +135,6 @@ class Products extends Controller
 			$offer_type=$this->request->input('offer_type');
 			$qnty=$this->request->input('qnty');
 			$detail=$this->request->input('detail');
-			$additional=$this->request->input('additional');
 			$group_tag=$this->request->input('group_tag');
 			$video=$this->request->input('video');
       $color=$this->request->input('color');
@@ -147,6 +146,7 @@ class Products extends Controller
 			$p_price=$this->request->input('p_price');
 
        $hsn=$this->request->input('hsn');
+       $add_info=$this->request->input('add_detail');
 
             // $qty1 = $this->request->input('qty1');
             // $qty1_price = $this->request->input('qty1_price');
@@ -163,7 +163,7 @@ class Products extends Controller
 
 			$created_by=$this->_user['user_id'];
       if($product_name != ""  && $category_id != "" && $sub_category_id != ""){
-        $i_status=$this->mproducts->createProducts($product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$created_by,$color,$color_name,$size,$p_price,$old_price,$price,$additional,$hsn);
+        $i_status=$this->mproducts->createProducts($product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$created_by,$color,$color_name,$size,$p_price,$old_price,$price,$hsn,$add_info);
         if($i_status=='A'){
           $this->_response_data['status']="FAILED";
           $this->_response_data['code']="502";
@@ -273,7 +273,6 @@ class Products extends Controller
       $offer_type=$this->request->input('offer_type');
       $qnty=$this->request->input('qnty');
       $detail=$this->request->input('detail');
-      $additional=$this->request->input('additional');
       $group_tag=$this->request->input('group_tag');
 			$video=$this->request->input('video');
 
@@ -286,14 +285,14 @@ class Products extends Controller
             $p_price=$this->request->input('p_price');
 
             $hsn=$this->request->input('hsn');
+            $add_info=$this->request->input('add_detail');
 
 
 
 
-
-	  $updated_by=$this->_user['user_id'];
+ 	  $updated_by=$this->_user['user_id'];
       if($id != "" && $product_name != "" && $category_id != "" && $sub_category_id != "" ){
-        $i_status=$this->mproducts->updateProducts($id,$product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$updated_by,$color,$color_name,$size,$p_price,$old_price,$price,$additional,$hsn);
+        $i_status=$this->mproducts->updateProducts($id,$product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$updated_by,$color,$color_name,$size,$p_price,$old_price,$price,$hsn,$add_info);
         if($i_status){
 
 

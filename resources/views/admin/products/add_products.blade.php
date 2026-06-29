@@ -157,17 +157,19 @@
                                                 <option value="0">Percentage</option>
                                         </select>
                                     </div>
+                                       
+
                                     <div class="col-md-6">
                                         <label class="form-label">Quantity</label>
                                         <input type="number" class="form-control" id="qnty" name="qnty">
                                     </div>
                                     <div class="col-md-12">
                                         <label class="form-label">Full Detail</label>
-                                        <textarea class="form-control" rows="4" id="details" name="detail"></textarea>
+                                        <textarea class="form-control" rows="4" id="details" name="detail"></textarea>     
                                     </div>
                                      <div class="col-md-12">
                                         <label class="form-label">Additional Information</label>
-                                        <textarea class="form-control" rows="4" id="additional" name="additional"></textarea>
+                                        <textarea class="form-control" rows="4" id="add_detail" name="add_detail"></textarea>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Product Tags <span>( Type and
@@ -210,8 +212,36 @@
 
 
 <script src="<?php echo url('/');?>/assets/datatable/js/sweetalert2@11.js"></script>
+<link href="{{url ('assets/summernote/summernote-bs5.css') }}" rel="stylesheet">
+<script src="{{url ('assets/summernote/summernote-bs5.js') }}"></script>
+
 <script type="text/javascript">
 window.onload = function(){
+
+localStorage.clear();
+
+    $('#add_detail,#details').summernote({
+    placeholder: 'Product Description',
+    tabsize: 2,
+    height: 250,
+    toolbar: [
+    ['style', ['style']],
+    ['font', ['bold', 'italic', 'underline', 'clear']],
+    ['fontname', ['fontname']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']],
+    ['table', ['table']],
+    ['insert', ['link', 'picture', 'hr']],
+    ['view', ['fullscreen', 'codeview']],
+    ['help', ['help']]
+  ],
+  });
+
+
+
+
+
 
 var formInstance = document.getElementById('form');
 formInstance.addEventListener('submit', function(event) {

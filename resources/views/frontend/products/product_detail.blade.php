@@ -207,7 +207,7 @@ exit;
                             <div class="widget-content-inner">
                                 <div class="">
                                     <p class="mb_30">
-                                        <?php echo $products->add_detail ?>
+                                        <?php echo $products->add_info ?? $products->add_detail ?? '' ?>
                                     </p>
 
                                 </div>

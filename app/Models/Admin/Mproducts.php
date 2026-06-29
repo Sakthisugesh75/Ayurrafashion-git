@@ -282,7 +282,7 @@ if (!empty($items->size)) {
     return $item;
   }
 
-  public function createProducts($product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$created_by,$color,$color_name,$size,$p_price,$old_price,$price,$additional,$hsn){
+  public function createProducts($product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$created_by,$color,$color_name,$size,$p_price,$old_price,$price,$hsn,$add_info){
     $i_status='E';
     $this->products->where('status', "1");
     $this->products->where('category_id', $category_id);
@@ -301,7 +301,6 @@ if (!empty($items->size)) {
 				'offer_type'      => $offer_type,
 				'short_desc'      => $short_desc,
 				'detail'      => $detail,
-        'add_detail'      => $additional,
 				'qty'      => $qnty,
 				'tags'      => $group_tag,
                 'video_url' => $video,
@@ -316,6 +315,11 @@ if (!empty($items->size)) {
                 'created_by'      => $created_by,
 				'created_date'      =>date("Y-m-d H:i:s")
       );
+      if (\Illuminate\Support\Facades\Schema::hasColumn('products', 'add_info')) {
+          $user_data['add_info'] = $add_info;
+      } else {
+          $user_data['add_detail'] = $add_info;
+      }
       $user_id=$this->products->insertGetId($user_data);
       $i_status=$user_id;
     }else{
@@ -324,7 +328,7 @@ if (!empty($items->size)) {
     return $i_status;
   }
 
-  public function updateProducts($id,$product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$updated_by,$color,$color_name,$size,$p_price,$old_price,$price,$additional,$hsn){
+  public function updateProducts($id,$product_name,$group_code,$category_id,$sub_category_id,$slug,$short_desc,$offer,$offer_type,$qnty,$detail,$group_tag,$video,$updated_by,$color,$color_name,$size,$p_price,$old_price,$price,$hsn,$add_info){
     $i_status='E';
     $this->products->where('status', "1");
     $this->products->where('product_group', $group_code);
@@ -343,7 +347,6 @@ if (!empty($items->size)) {
         'offer_type'      => $offer_type,
         'short_desc'      => $short_desc,
         'detail'      => $detail,
-        'add_detail'      => $additional,
         'qty'      => $qnty,
         'tags'      => $group_tag,
         'video_url' => $video,
@@ -357,6 +360,11 @@ if (!empty($items->size)) {
 				'updated_by'      => $updated_by,
 				'updated_date'      =>date("Y-m-d H:i:s")
       );
+      if (\Illuminate\Support\Facades\Schema::hasColumn('products', 'add_info')) {
+          $user_data['add_info'] = $add_info;
+      } else {
+          $user_data['add_detail'] = $add_info;
+      }
       $this->products->where('products.id', $id);
       if($this->products->update($user_data)){
         $i_status=$id;
